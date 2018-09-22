@@ -1,0 +1,46 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type myInt int
+
+type vertex struct {
+	height, breadth float64
+}
+
+func (x myInt) sqr() myInt{
+	return x*x
+
+}
+
+func (v vertex) hypoM() float64{
+	return math.Sqrt(v.breadth*v.breadth + v.height*v.height)
+}
+
+func hypoF(f, j float64) float64{
+	d := math.Sqrt( f * f + j*j)
+	return d
+}
+//pointer receiver Scales the triangle by 25
+func (v *vertex) scale(f float64){
+	v.height = v.height*f
+	v.breadth= v.breadth*f
+}
+
+
+func main(){
+	var a myInt
+	a = 10
+	fmt.Println(a.sqr())
+
+	v := vertex{3,4}
+	(&v).scale(10) //changes values by 10
+	//or
+	//v.scale(10) hat is, as a convenience, Go interprets the statement v.Scale(10) as (&v).Scale(10) since the Scale method has a pointer receiver.
+	fmt.Println(v.hypoM())
+	fmt.Println(hypoF(3,4))
+
+}
