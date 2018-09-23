@@ -10,7 +10,7 @@ import (
 var wg sync.WaitGroup
 
 //Do parallelism
-func init(){
+func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
@@ -24,7 +24,7 @@ func boo() {
 
 func foo() {
 	for i := 'a'; i <= 'z'; i++ {
-		fmt.Println("FOO",string(i))
+		fmt.Println("FOO", string(i))
 		time.Sleep(time.Duration(3 * time.Millisecond))
 	}
 	wg.Done()
